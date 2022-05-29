@@ -6,6 +6,7 @@
 
 \usepackage[top=20mm, bottom=27mm, left=30mm, right=15mm]{geometry}
 
+% Reccomended: 1.00, 1.15, 1.25
 \linespread{1}
 
 \newlength{\parinlen}
@@ -91,9 +92,7 @@
         {1em \@plus .2ex}                
         {\raggedright\normalfont\normalsize\bfseries\MakeUppercase}
     }
-\makeatother
 
-\makeatletter
     \renewcommand{\subsection}
     {
         \@startsection{subsection}{2}
@@ -102,18 +101,14 @@
         {1em \@plus .2ex} 
         {\raggedright\normalfont\normalsize\bfseries}
     }
-\makeatother 
 
-\makeatletter
     \renewcommand{\subsubsection}{
     \@startsection{subsubsection}{3}
     {\parinlen}
     {-1em \@plus -1ex \@minus -.2ex}
     {\z@}                         
     {\raggedright\normalfont\normalsize\bfseries}}
-\makeatother
 
-\makeatletter
     \newcommand{\@csection}{
         \clearpage
         \@startsection{section}{1}
@@ -123,7 +118,7 @@
         {\centering\normalfont\normalsize\bfseries\MakeUppercase}}
         
     \newcommand{\csection}[1]{\@csection*{#1}\addcontentsline{toc}{section}{#1}} 
-\makeatother % \large
+\makeatother
 
 \makeatletter
     \renewcommand{\@seccntformat}[1]{\csname the#1\endcsname{}~}
@@ -143,7 +138,8 @@
 \DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 
-\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize}
+%\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize}
+\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=small}
 \captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize}
 
 % \DeclareCaptionLabelFormat{stbsubfigure}{#2}
@@ -215,12 +211,14 @@
 \setlength\bibindent{-1.0900cm}
 
 \makeatletter
-\renewcommand\NAT@bibsetnum[1]{
+\renewcommand\NAT@bibsetnum[1]
+{
     \settowidth\labelwidth{\@biblabel{#1}}
     \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
     \setlength{\itemindent}{-\bibindent+\parinlen-0.240cm}%
     \setlength{\listparindent}{\itemindent}
-\setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
+    \setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
+    
     \ifNAT@openbib
         \addtolength{\leftmargin}{\bibindent}%
         \setlength{\itemindent}{-\bibindent}%
@@ -228,6 +226,7 @@
         \setlength{\parsep}{10pt}%
     \fi
 }
+\makeatother
 
 \mathchardef\mathequals=\mathcode`=
 \begingroup\lccode`~=`=
@@ -235,3 +234,6 @@
 \AtBeginDocument{\mathcode`=="8000 }
 
 \newcommand\z[1]{\ifhmode\unskip\fi\nobreak\ \discretionary{#1}{#1}{#1}\nobreak}
+
+\usepackage{url} % во избежание проблем с использованием электронных ресурсов в источниках, содержащих нижнее подчеркивание в ссылке
+\urlstyle{same} % стиль совпадает с системным

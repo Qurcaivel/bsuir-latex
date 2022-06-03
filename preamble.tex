@@ -1,3 +1,5 @@
+% Основной стиль текста на странице
+
 \documentclass[a4paper, oneside, 14pt, final]{extreport}
 
 \usepackage[T2A]{fontenc}
@@ -6,31 +8,26 @@
 
 \usepackage[top=20mm, bottom=27mm, left=30mm, right=15mm]{geometry}
 
-% Reccomended: 1.00, 1.15, 1.25
-\linespread{1}
+\linespread{1.15} % Reccomended: 1.00, 1.15, 1.25
 
 \newlength{\parinlen}
-\setlength{\parinlen}{12.5mm}
+\setlength{\parinlen}{12.5mm} % Reccomended: 1.25cm, 1.27cm
 
 \usepackage{indentfirst}
 \setlength{\parindent}{\parinlen}    
 
-\frenchspacing
+% Стиль сносок
 
 \usepackage{perpage}
 \MakePerPage{footnote}
 
 \makeatletter 
-    \def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}}
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}}
 \makeatother
 
 \usepackage[bottom]{footmisc}
 
-\makeatletter
-    \renewcommand{\thesection}{\arabic{section}}
-\makeatother
-
-\setcounter{secnumdepth}{3}
+% Стиль содержания
 
 \usepackage{tocloft}
 
@@ -40,137 +37,183 @@
 \makeatletter
 \renewcommand{\cftsecfillnum}[1]
 {%
-    \ifnum#1<10
-    \gdef\@pnumwidth{6pt}
-    \else
-    \ifnum#1<100
-    \gdef\@pnumwidth{14pt}
-    \else
-    \gdef\@pnumwidth{18pt}
-    \fi\fi
-    {\cftsecleader}\nobreak
-    \makebox[\@pnumwidth][\cftpnumalign]{\cftsecpagefont #1}\cftsecafterpnum\par
+    \ifnum#1<10%
+    \gdef\@pnumwidth{6pt}%
+    \else%
+    \ifnum#1<100%
+    \gdef\@pnumwidth{14pt}%
+    \else%
+    \gdef\@pnumwidth{18pt}%
+    \fi\fi%
+    {\cftsecleader}\nobreak%
+    \makebox[\@pnumwidth][\cftpnumalign]{\cftsecpagefont #1}\cftsecafterpnum\par%
 }
+
 \renewcommand{\cftsubsecfillnum}[1]
 {%
-    \ifnum#1<10
-    \gdef\@pnumwidth{6pt}
-    \else
-    \ifnum#1<100
-    \gdef\@pnumwidth{14pt}
-    \else
-    \gdef\@pnumwidth{18pt}
-    \fi\fi
-    {\cftsecleader}\nobreak
-    \makebox[\@pnumwidth][\cftpnumalign]{\cftsecpagefont #1}\cftsecafterpnum\par
+    \ifnum#1<10%
+    \gdef\@pnumwidth{6pt}%
+    \else%
+    \ifnum#1<100%
+    \gdef\@pnumwidth{14pt}%
+    \else%
+    \gdef\@pnumwidth{18pt}%
+    \fi\fi%
+    {\cftsecleader}\nobreak%
+    \makebox[\@pnumwidth][\cftpnumalign]{\cftsubsecpagefont #1}\cftsubsecafterpnum\par%
 }
 \makeatother
 
 \renewcommand{\cftsecleader}{\cftdotfill{\cftsecdotsep}}
+\renewcommand{\cftsubsecleader}{\cftdotfill{\cftsubsecdotsep}}
+
 \renewcommand\cftsecdotsep{\cftdot}
 \renewcommand\cftsubsecdotsep{\cftdot}
 
 \cftsetindents{section}{0.5em}{1.0em}
 \cftsetindents{subsection}{1.5em}{1.8em}
 
+% Стиль колонтитулов
+
 \usepackage{fancyhdr} 
 \pagestyle{fancy}
 
 \fancyhf{}
 \fancyfoot[R]{\thepage} 
-    \renewcommand{\footrulewidth}{0pt}
-    \renewcommand{\headrulewidth}{0pt}
+
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0pt}
+
 \fancypagestyle{plain}{\fancyhf{}\rfoot{\thepage}}
 
-\makeatletter
-    \renewcommand{\section}
-    {
-    \clearpage
-        \@startsection{section}{1}
-        {\parinlen}
-        {-1em \@plus -1ex \@minus -.2ex}
-        {1em \@plus .2ex}                
-        {\raggedright\normalfont\normalsize\bfseries\MakeUppercase}
-    }
+% Стиль секций
 
-    \renewcommand{\subsection}
-    {
-        \@startsection{subsection}{2}
-        {\parinlen}
-        {-1em \@plus -1ex \@minus -.2ex} 
-        {1em \@plus .2ex} 
-        {\raggedright\normalfont\normalsize\bfseries}
-    }
+\setcounter{secnumdepth}{3}
 
-    \renewcommand{\subsubsection}{
-    \@startsection{subsubsection}{3}
-    {\parinlen}
-    {-1em \@plus -1ex \@minus -.2ex}
-    {\z@}                         
-    {\raggedright\normalfont\normalsize\bfseries}}
+\renewcommand{\thesection}{\arabic{section}}
 
-    \newcommand{\@csection}{
-        \clearpage
-        \@startsection{section}{1}
-        {\z@}                                         
-        {-1em \@plus -1ex \@minus -.2ex}
-        {1em \@plus .2ex}
-        {\centering\normalfont\normalsize\bfseries\MakeUppercase}}
-        
-    \newcommand{\csection}[1]{\@csection*{#1}\addcontentsline{toc}{section}{#1}} 
-\makeatother
+\newcounter{appendix}
 
 \makeatletter
-    \renewcommand{\@seccntformat}[1]{\csname the#1\endcsname{}~}
+\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname{}~}
+
+\renewcommand{\section}
+{%
+    \clearpage%
+    \@startsection{section}{1}%
+    {\parinlen}%
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {1em \@plus .2ex}%  
+    {\raggedright\normalfont\normalsize\bfseries\MakeUppercase}%
+}
+
+\renewcommand{\subsection}
+{%
+    \@startsection{subsection}{2}%
+    {\parinlen}%
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {1em \@plus .2ex}% 
+    {\raggedright\normalfont\normalsize\bfseries}%
+}
+
+\renewcommand{\subsubsection}
+{%
+    \@startsection{subsubsection}{3}%
+    {\parinlen}%
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {\z@}%                         
+    {\raggedright\normalfont\normalsize\bfseries}%
+}
+
+\newcommand{\@csection}
+{%
+    \clearpage%
+    \@startsection{section}{1}%
+    {\z@}%                                   
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {1em \@plus .2ex}%
+    {\centering\normalfont\normalsize\bfseries\MakeUppercase}%
+}
+    
+\newcommand{\csection}[1]
+{%
+    \@csection*{#1}%
+    \addcontentsline{toc}{section}{#1}%
+} 
+
+\newcommand{\@appendix}
+{%
+    \clearpage%
+    \@startsection{section}{1}%
+    {\z@}%                                   
+    {-1em \@plus -1ex \@minus -.2ex}%
+    {1em \@plus .2ex}%
+    {\centering\normalfont\normalsize\bfseries}%
+}
+
+\renewcommand{\appendix}[2]
+{%
+    \stepcounter{appendix}
+    \@appendix*{\MakeUppercase{Приложение \asbuk{appendix}} \\ (#1) \\ #2}
+    \markboth{\MakeUppercase{#1}}{}
+    \addcontentsline{toc}{section}{Приложение \MakeUppercase{\asbuk{appendix}} (#1) #2}
+}
 \makeatother
+
+% Графические изображения
 
 \usepackage[final]{graphicx}
 \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
 \graphicspath{{images/}}
 
+% Стиль надписей к таблицам и изображениям
+
 \usepackage[nooneline]{caption}
 \usepackage{subcaption}
-
-\DeclareRobustCommand{\No}{\ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
 
 \DeclareCaptionLabelSeparator{stb}{~--~}
 
 \DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 
-%\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize}
-\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=small}
+\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize}
 \captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize}
 
-% \DeclareCaptionLabelFormat{stbsubfigure}{#2}
-% \renewcommand{\thesubfigure}{\asbuk{subfigure}}
-% \captionsetup[subfigure]{labelformat=stbsubfigure, justification=centering, size=normalsize}
+% Математика и оформление формул
 
 \usepackage{calc}
-
-\newlength{\wherelen} 
-\settowidth{\wherelen}{где}
-
-\newenvironment{explanation}
-{
-    \begin{itemize}[leftmargin=0cm, itemindent=\wherelen + \labelsep , labelsep=\labelsep]
-    \renewcommand{\labelitemi}{}}
-{
-    \end{itemize}
-}
-
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{amsthm}
- 
+
+\newlength{\eqindent}
+\setlength{\eqindent}{\baselineskip} % Reccomended: baselineskip, 1.3em, 1.4em, 1.5em
+
+\makeatletter
+\expandafter\def\expandafter\normalsize\expandafter
+{%
+    \normalsize
+    \setlength\abovedisplayskip{\eqindent - \baselineskip}
+    \setlength\belowdisplayskip{\eqindent}
+    \setlength\abovedisplayshortskip{\eqindent - \baselineskip}
+    \setlength\belowdisplayshortskip{\eqindent}
+}
+\makeatother
+
+\newenvironment{explanation}
+{\begin{itemize}[leftmargin=0cm, itemindent=\widthof{где} + \labelsep , labelsep=\labelsep]\renewcommand{\labelitemi}{}}
+{\end{itemize}}
+
+% Нумерация и стиль перечислений
+
 \usepackage{enumitem}
 
 \makeatletter
     \AddEnumerateCounter{\asbuk}{\@asbuk}{щ)}
 \makeatother
 
-\setlist{nolistsep}
+\setlist{noitemsep}
 
 \renewcommand{\labelenumi}{\arabic{enumi}.}
 
@@ -182,25 +225,17 @@
 \AtBeginDocument{\numberwithin{table}{section}}
 \AtBeginDocument{\numberwithin{figure}{section}}
 
+% Вспомогательные пакеты
+
 \usepackage{makecell}
 \usepackage{multirow}
 \usepackage{array}
-
-% \usepackage{icomma}
-
-% \usepackage{mathtext}
-
-\makeatletter
-    \renewcommand{\roman}[1]{\romannumeral #1}
-    \renewcommand{\Roman}[1]{\expandafter\@slowromancap\romannumeral #1@}
-\makeatother
-
 \usepackage{longtable}
 \usepackage{pdfpages}
 \usepackage{textcomp, gensymb}
 \usepackage{tabularx}
 
-\def\hyph{-\penalty0\hskip0pt\relax}
+% Стиль библиографии
 
 \usepackage[square, numbers, sort&compress]{natbib}
 
@@ -212,11 +247,11 @@
 
 \makeatletter
 \renewcommand\NAT@bibsetnum[1]
-{
+{%
     \settowidth\labelwidth{\@biblabel{#1}}
     \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
     \setlength{\itemindent}{-\bibindent+\parinlen-0.240cm}%
-    \setlength{\listparindent}{\itemindent}
+    \setlength{\listparindent}{\itemindent}%
     \setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
     
     \ifNAT@openbib
@@ -228,12 +263,13 @@
 }
 \makeatother
 
-\mathchardef\mathequals=\mathcode`=
-\begingroup\lccode`~=`=
-  \lowercase{\endgroup\def~}{\mathequals\discretionary{}{\the\textfont0=}{}}
-\AtBeginDocument{\mathcode`=="8000 }
+% Поддержка ссылок с нижним подчеркиванием в BibTeX
 
-\newcommand\z[1]{\ifhmode\unskip\fi\nobreak\ \discretionary{#1}{#1}{#1}\nobreak}
+\usepackage{url}
+\urlstyle{same}
 
-\usepackage{url} % во избежание проблем с использованием электронных ресурсов в источниках, содержащих нижнее подчеркивание в ссылке
-\urlstyle{same} % стиль совпадает с системным
+% Frenchspacing и перенос слов с дефисом
+
+\def\hyph{-\penalty0\hskip0pt\relax}
+
+\frenchspacing

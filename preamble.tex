@@ -8,10 +8,10 @@
 
 \usepackage[top=20mm, bottom=27mm, left=30mm, right=15mm]{geometry}
 
-\linespread{1.15} % Reccomended: 1.00, 1.15, 1.25
+\linespread{1.15} % Recommended: 1.00, 1.15, 1.25
 
 \newlength{\parinlen}
-\setlength{\parinlen}{12.5mm} % Reccomended: 1.25cm, 1.27cm
+\setlength{\parinlen}{12.5mm} % Recommended: 1.25cm, 1.27cm
 
 \usepackage{indentfirst}
 \setlength{\parindent}{\parinlen}    
@@ -176,7 +176,7 @@
 \DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 
-\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize}
+\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize} % Recommended: size=small, size=normalsize
 \captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize}
 
 % Математика и оформление формул
@@ -188,7 +188,7 @@
 \usepackage{amsthm}
 
 \newlength{\eqindent}
-\setlength{\eqindent}{\baselineskip} % Reccomended: baselineskip, 1.3em, 1.4em, 1.5em
+\setlength{\eqindent}{1.4em} % Recommended: baselineskip, 1.3em, 1.4em, 1.5em
 
 \makeatletter
 \expandafter\def\expandafter\normalsize\expandafter
@@ -213,7 +213,7 @@
     \AddEnumerateCounter{\asbuk}{\@asbuk}{щ)}
 \makeatother
 
-\setlist{noitemsep}
+\setlist{nolistsep}
 
 \renewcommand{\labelenumi}{\arabic{enumi}.}
 
@@ -241,7 +241,7 @@
 
 \setlength{\bibsep}{0em}
 
-\bibliographystyle{bsuir-latex/styles/belarus-specific-utf8gost780u}
+\bibliographystyle{belarus-specific-utf8gost780u}
 
 \setlength\bibindent{-1.0900cm}
 

@@ -92,8 +92,6 @@
 
 \renewcommand{\thesection}{\arabic{section}}
 
-\newcounter{appendix}
-
 \makeatletter
 \renewcommand{\@seccntformat}[1]{\csname the#1\endcsname{}~}
 
@@ -141,6 +139,9 @@
     \addcontentsline{toc}{section}{#1}%
 } 
 
+\newcounter{appendix}
+\renewcommand{\theappendix}{\Asbuk{appendix}}
+
 \newcommand{\@appendix}
 {%
     \clearpage%
@@ -153,10 +154,10 @@
 
 \renewcommand{\appendix}[2]
 {%
-    \stepcounter{appendix}
-    \@appendix*{\MakeUppercase{Приложение \asbuk{appendix}} \\ (#1) \\ #2}
+    \refstepcounter{appendix}
+    \@appendix*{\MakeUppercase{Приложение \theappendix} \\ (#1) \\ #2}
     \markboth{\MakeUppercase{#1}}{}
-    \addcontentsline{toc}{section}{Приложение \MakeUppercase{\asbuk{appendix}} (#1) #2}
+    \addcontentsline{toc}{section}{Приложение {\theappendix} (#1) #2}
 }
 \makeatother
 

@@ -130,12 +130,12 @@
     {\z@}%                                   
     {-1em \@plus -1ex \@minus -.2ex}%
     {1em \@plus .2ex}%
-    {\centering\normalfont\normalsize\bfseries\MakeUppercase}%
+    {\centering\normalfont\normalsize\bfseries}%
 }
-    
+
 \newcommand{\csection}[1]
 {%
-    \@csection*{#1}%
+    \@csection*{\MakeUppercase{#1}}%
     \addcontentsline{toc}{section}{#1}%
 } 
 
@@ -154,10 +154,10 @@
 
 \renewcommand{\appendix}[2]
 {%
-    \refstepcounter{appendix}
-    \@appendix*{\MakeUppercase{Приложение \theappendix} \\ (#1) \\ #2}
-    \markboth{\MakeUppercase{#1}}{}
-    \addcontentsline{toc}{section}{Приложение {\theappendix} (#1) #2}
+    \refstepcounter{appendix}%
+    \@appendix*{\MakeUppercase{Приложение \theappendix} \\ (#1) \\ #2}%
+    \markboth{\MakeUppercase{#1}}{}%
+    \addcontentsline{toc}{section}{Приложение {\theappendix} (#1) #2}%
 }
 \makeatother
 
@@ -242,7 +242,7 @@
 
 \setlength{\bibsep}{0em}
 
-\bibliographystyle{belarus-specific-utf8gost780u}
+\bibliographystyle{gost780u}
 
 \setlength\bibindent{-1.0900cm}
 
@@ -274,3 +274,7 @@
 \def\hyph{-\penalty0\hskip0pt\relax}
 
 \frenchspacing
+
+% Гиперссылки в содержании и тексте
+
+\usepackage[colorlinks=true, allcolors=black]{hyperref}

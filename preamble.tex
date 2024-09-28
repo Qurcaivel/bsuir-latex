@@ -4,8 +4,9 @@
 
 \documentclass[a4paper, oneside, 14pt, final]{extreport}
 
-\usepackage[T2A]{fontenc}
-\usepackage[utf8]{inputenc}
+\usepackage{fontspec}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{Times New Roman}
 \usepackage[english, russian]{babel}
 
 \usepackage[top=20mm, bottom=27mm, left=30mm, right=15mm]{geometry}
@@ -183,9 +184,12 @@
 \DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 
-\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize} % Recommended: size=small, size=normalsize
-\captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize}
+\setlength{\belowcaptionskip}{0pt}
+\setlength{\abovecaptionskip}{0pt}
 
+\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize, aboveskip=7pt, belowskip=-7pt} % Recommended: size=small, size=normalsize
+\captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize, aboveskip=0pt, format=hang}
+ 
 % Математика и оформление формул
 
 \usepackage{calc}

@@ -200,18 +200,12 @@
 \newlength{\eqindent}
 \setlength{\eqindent}{1.4em} % Recommended: baselineskip, 1.3em, 1.4em, 1.5em
 
-% todo: issue#8
-%
-% \makeatletter
-% \expandafter\def\expandafter\normalsize\expandafter
-% {%
-%     \normalsize
-%     \setlength\abovedisplayskip{\eqindent - \baselineskip}
-%     \setlength\belowdisplayskip{\eqindent}
-%     \setlength\abovedisplayshortskip{\eqindent - \baselineskip}
-%     \setlength\belowdisplayshortskip{\eqindent}
-% }
-% \makeatother
+\usepackage{etoolbox}
+
+\AtBeginEnvironment{equation}{\setlength\abovedisplayskip{\eqindent - \baselineskip}}
+\AtBeginEnvironment{equation}{\setlength\belowdisplayskip{\eqindent}}
+\AtBeginEnvironment{equation}{\setlength\abovedisplayshortskip{\eqindent - \baselineskip}}
+\AtBeginEnvironment{equation}{\setlength\belowdisplayshortskip{\eqindent}}
 
 \newenvironment{explanation}
 {\begin{itemize}[leftmargin=0cm, itemindent=\widthof{где} + \labelsep , labelsep=\labelsep]\renewcommand{\labelitemi}{}}

@@ -201,11 +201,15 @@
 \setlength{\eqindent}{1.4em} % Recommended: baselineskip, 1.3em, 1.4em, 1.5em
 
 \usepackage{etoolbox}
+\usepackage{pgffor}
 
-\AtBeginEnvironment{equation}{\setlength\abovedisplayskip{\eqindent - \baselineskip}}
-\AtBeginEnvironment{equation}{\setlength\belowdisplayskip{\eqindent}}
-\AtBeginEnvironment{equation}{\setlength\abovedisplayshortskip{\eqindent - \baselineskip}}
-\AtBeginEnvironment{equation}{\setlength\belowdisplayshortskip{\eqindent}}
+% Note: if necessary, supplement the list with the necessary math environment
+\foreach \env in {equation, equation*, align, align*}{
+    \AtBeginEnvironment{\env}{\setlength\abovedisplayskip{\eqindent - \baselineskip}}
+    \AtBeginEnvironment{\env}{\setlength\belowdisplayskip{\eqindent}}
+    \AtBeginEnvironment{\env}{\setlength\abovedisplayshortskip{\eqindent - \baselineskip}}
+    \AtBeginEnvironment{\env}{\setlength\belowdisplayshortskip{\eqindent}}
+}
 
 \newenvironment{explanation}
 {\begin{itemize}[leftmargin=0cm, itemindent=\widthof{где} + \labelsep , labelsep=\labelsep]\renewcommand{\labelitemi}{}}

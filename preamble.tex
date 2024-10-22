@@ -296,3 +296,8 @@
 
 \usepackage{fancyvrb}
 \usepackage{verbatim}
+
+% Вертикальное и горизонтальное выравнивание в таблицах
+
+\renewcommand\tabularxcolumn[1]{m{#1}}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}

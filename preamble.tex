@@ -38,6 +38,10 @@
 \setlength{\cftaftertoctitleskip}{1em}
 
 \makeatletter
+\renewcommand{\numberline}[1]{%
+  \@cftbsnum #1\@cftasnum~~\@cftasnumb%
+}
+
 \renewcommand{\cftsecfillnum}[1]
 {%
     \ifnum#1<10%

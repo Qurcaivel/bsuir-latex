@@ -231,9 +231,11 @@
 
 \renewcommand{\labelenumi}{\arabic{enumi}.}
 
-\setlist[itemize,0]{itemindent=\parindent + 2.2ex, leftmargin=0ex, label=--}
-\setlist[enumerate,1]{itemindent=\parindent + 2.7ex, leftmargin=0ex}
-\setlist[enumerate,2]{itemindent=\parindent + \parindent - 2.7ex}
+\setlist[itemize,1]{leftmargin=\parinlen + 2.2ex, label=--}
+\setlist[itemize]{leftmargin=\parinlen, label=--}
+
+\setlist[enumerate,1]{leftmargin=\parinlen + 2.7ex}
+\setlist[enumerate]{leftmargin=\parinlen}
 
 \AtBeginDocument{\numberwithin{equation}{section}}
 \AtBeginDocument{\numberwithin{table}{section}}

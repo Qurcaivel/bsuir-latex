@@ -187,12 +187,34 @@
 \DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 
-\setlength{\belowcaptionskip}{0pt}
-\setlength{\abovecaptionskip}{0pt}
+\setlength{\intextsep}{\baselineskip}
+\setlength{\textfloatsep}{\baselineskip}
 
-\captionsetup[figure]{labelformat=stbfigure, justification=centering, labelsep=stb, size=normalsize, aboveskip=7pt, belowskip=-7pt} % Recommended: size=small, size=normalsize
-\captionsetup[table]{labelformat=stbtable, justification=raggedright, labelsep=stb, size=normalsize, aboveskip=0pt, format=hang}
- 
+\BeforeBeginEnvironment{figure}{\nointerlineskip}
+\AfterEndEnvironment{figure}{\nointerlineskip}
+
+\BeforeBeginEnvironment{table}{\nointerlineskip}
+\AfterEndEnvironment{table}{\nointerlineskip}
+
+\captionsetup[figure]{%
+    labelformat=stbfigure,%
+    justification=centering,%
+    labelsep=stb,%
+    size=normalsize,%
+    aboveskip=\baselineskip,%
+    belowskip=0em%
+}
+
+\captionsetup[table]{%
+    labelformat=stbtable,%
+    justification=raggedright,%
+    labelsep=stb,%
+    size=normalsize,%
+    aboveskip=0em,%
+    belowskip=0em,%
+    format=hang
+}
+
 % Математика и оформление формул
 
 \usepackage{calc}

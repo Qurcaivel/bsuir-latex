@@ -38,9 +38,9 @@
 \setlength{\cftaftertoctitleskip}{1em}
 
 \makeatletter
-\renewcommand{\numberline}[1]{%
-  \@cftbsnum #1\@cftasnum~~\@cftasnumb%
-}
+% \renewcommand{\numberline}[1]{%
+%   \@cftbsnum #1\@cftasnum~\@cftasnumb%
+% }
 
 \renewcommand{\cftsecfillnum}[1]
 {%
@@ -126,7 +126,7 @@
     \@startsection{subsubsection}{3}%
     {\parinlen}%
     {-1em \@plus -1ex \@minus -.2ex}%
-    {1em \@plus .2ex}%                         
+    {\z@}% 
     {\raggedright\normalfont\normalsize\bfseries}%
 }
 
@@ -140,11 +140,16 @@
     {\centering\normalfont\normalsize\bfseries}%
 }
 
-\newcommand{\csection}[1]
-{%
+\newcommand{\@csectionnostar}[1]{%
+    \@csection*{\MakeUppercase{#1}}%
+}
+
+\newcommand{\@csectionwithtoc}[1]{%
     \@csection*{\MakeUppercase{#1}}%
     \addcontentsline{toc}{section}{#1}%
-} 
+}
+
+\newcommand{\csection}{\@ifstar{\@csectionnostar}{\@csectionwithtoc}}
 
 \newcounter{appendix}
 \renewcommand{\theappendix}{\Asbuk{appendix}}
@@ -156,15 +161,15 @@
     {\z@}%                                   
     {-1em \@plus -1ex \@minus -.2ex}%
     {1em \@plus .2ex}%
-    {\centering\normalfont\normalsize\bfseries}%
+    {\centering\normalfont\normalsize}%
 }
 
 \renewcommand{\appendix}[2]
 {%
     \refstepcounter{appendix}%
-    \@appendix*{\MakeUppercase{Приложение \theappendix} \\ (#1) \\ #2}%
+    \@appendix*{\MakeUppercase{\textbf{Приложение \theappendix}} \\ (#1) \\[1em] \textbf{#2}}%
     \markboth{\MakeUppercase{#1}}{}%
-    \addcontentsline{toc}{section}{Приложение {\theappendix} (#1) #2}%
+    \addcontentsline{toc}{section}{Приложение {\theappendix}}%
 }
 \makeatother
 
@@ -238,7 +243,7 @@
 }
 
 \newenvironment{explanation}
-{\begin{itemize}[leftmargin=0cm, itemindent=\widthof{где} + \labelsep , labelsep=\labelsep]\renewcommand{\labelitemi}{}}
+{\begin{itemize}[leftmargin=0cm, labelwidth=\widthof{где}, itemindent=\widthof{где} + 1ex, labelsep=1ex]\renewcommand{\labelitemi}{}}
 {\end{itemize}}
 
 % Нумерация и стиль перечислений
@@ -251,7 +256,7 @@
 
 \setlist{nolistsep}
 
-\renewcommand{\labelenumi}{\arabic{enumi}.}
+\renewcommand{\labelenumi}{\arabic{enumi}}
 
 \setlist[enumerate]{wide=\parinlen, leftmargin=\parinlen, labelindent=2\parinlen}
 \setlist[enumerate, 1]{wide=\parinlen}
@@ -281,14 +286,14 @@
 
 \bibliographystyle{tex/gost780u} % Для подключения в виде gitmodule по пути tex
 
-\setlength\bibindent{-1.0900cm}
+\setlength\bibindent{-0.9cm}
 
 \makeatletter
 \renewcommand\NAT@bibsetnum[1]
 {%
     \settowidth\labelwidth{\@biblabel{#1}}
     \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
-    \setlength{\itemindent}{-\bibindent+\parinlen-0.240cm}%
+    \setlength{\itemindent}{-\bibindent+\parinlen}%
     \setlength{\listparindent}{\itemindent}%
     \setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
     
@@ -303,7 +308,7 @@
 
 % Поддержка ссылок с нижним подчеркиванием в BibTeX
 
-\usepackage{url}
+\usepackage[hyphens]{url}
 \urlstyle{same}
 
 % Frenchspacing и перенос слов с дефисом
@@ -321,8 +326,9 @@
 \usepackage{fancyvrb}
 \usepackage{verbatim}
 
-\setmonofont{Courier New}[Scale=0.8]
+\setmonofont{Courier New}
 \fvset{xleftmargin=\parindent}
+\RecustomVerbatimEnvironment{Verbatim}{Verbatim}{fontsize=\fontsize{12pt}{16pt}\selectfont}
 
 % Вертикальное и горизонтальное выравнивание в таблицах
 

@@ -123,7 +123,7 @@ FUNCTION {output.nonnull}
     { ", " * write$ }
     { output.state after.block =
         { add.period$ write$
-          " " "--- " *  write$
+          " " "-- " *  write$
           newline$
           "\newblock " write$
         }
@@ -302,46 +302,37 @@ FUNCTION {space.word}
 FUNCTION {bbl.edby}    %  { "\bbledby{}" }
 {  curlanguage "english" =
     {"Ed. by "}
-    { curlanguage "ukrainian" =
-        {"{Під ред. }"}
-        { curlanguage "russian" =
-           {"{Под ред. }"}
-           {"language is not defined: " language  "edited by" * * warning$ "edited by"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"{Под ред. }"}
+       {"language is not defined: " language  "edited by" * * warning$ "edited by"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.cmplr}
 {  curlanguage "english" =
     {"Compiler "}
-    { curlanguage "ukrainian" =
-        {"{Укл. }"}
-        { curlanguage "russian" =
-           {"{Сост. }"}
-           {"language is not defined: " language  "compiler" * * warning$ "compiler"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"{Сост. }"}
+       {"language is not defined: " language  "compiler" * * warning$ "compiler"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.edition} %  { "\bbledition{}" }
 {  curlanguage "english" =
     {"edition"}
-    { curlanguage "ukrainian" =
-        {"{вид.}"}
-        { curlanguage "russian" =
-           {"{изд.}"}
-           {"language is not defined: " language  "edition" * * warning$ "edition"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"{изд.}"}
+       {"language is not defined: " language  "edition" * * warning$ "edition"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.vvolume} %  { "\bblVolume{}" }
 {  curlanguage "english" =
     {"Volume"}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
         {"Том"}
         {"language is not defined: " language  "Volume" * * warning$ "Volume"}
       if$}
@@ -351,7 +342,7 @@ FUNCTION {bbl.vvolume} %  { "\bblVolume{}" }
 FUNCTION {bbl.vvol}    %  { "\bblVol{}" }
 {  curlanguage "english" =
     {"Vol."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"Т."}
            {"language is not defined: " language  "Vol." * * warning$ "Vol."}
       if$}
@@ -361,59 +352,47 @@ FUNCTION {bbl.vvol}    %  { "\bblVol{}" }
 FUNCTION {bbl.iissue}  %  { "\bblIssue{}" }
 {  curlanguage "english" =
     {"Issue"}
-    { curlanguage "ukrainian" =
-        {"Випуск"}
-        { curlanguage "russian" =
-           {"Выпуск"}
-           {"language is not defined: " language * warning$ "Issue"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"Выпуск"}
+       {"language is not defined: " language * warning$ "Issue"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.iiss}  %  { "\bblIss{}" }
 {  curlanguage "english" =
     {"Iss."}
-    { curlanguage "ukrainian" =
-        {"Вип."}
-        { curlanguage "russian" =
-           {"Вып."}
-           {"language is not defined: " language * warning$ "Issue"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"Вып."}
+       {"language is not defined: " language * warning$ "Issue"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.of}      %  { "\bblof{}" }
 {  curlanguage "english" =
     {"of"}
-    { curlanguage "ukrainian" =
-        {"{із}"}
-        { curlanguage "russian" =
-           {"{из}"}
-           {"language is not defined: " language "of" *  * warning$ "of"}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"{из}"}
+       {"language is not defined: " language "of" *  * warning$ "of"}
+     if$}
   if$
 }
 
 FUNCTION {bbl.etal}      %  { "\bblof{}" }
 {  curlanguage "english" =
     {"[et~al.]"}
-    { curlanguage "ukrainian" =
-        {"{[та~ін.]}"}
-        { curlanguage "russian" =
-           {"{[и~др.]}"}
-           {"language is not defined: " language  "at al" * * warning$ "at al."}
-         if$}
-      if$}
+    { curlanguage "russian" =
+       {"{[и~др.]}"}
+       {"language is not defined: " language  "at al" * * warning$ "at al."}
+     if$}
   if$
 }
 
 FUNCTION {bbl.nnumber} %  { "\bblNumber{}" }
 {  curlanguage "english" =
     {"Number"}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"Номер"}
            {"language is not defined: " language  "Number" * * warning$ "Number"}
       if$}
@@ -423,7 +402,7 @@ FUNCTION {bbl.nnumber} %  { "\bblNumber{}" }
 FUNCTION {bbl.number}  %  { "\bblnumber{}" }
 {  curlanguage "english" =
     {"number"}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{номер}"}
            {"language is not defined: " language  "number" * * warning$ "number"}
       if$}
@@ -433,7 +412,7 @@ FUNCTION {bbl.number}  %  { "\bblnumber{}" }
 FUNCTION {bbl.nr}     %   { "\bblno{}" }
 {  curlanguage "english" =
     {"no."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{№}"}
            {"language is not defined: " language  "no." * * warning$ "no."}
       if$}
@@ -443,7 +422,7 @@ FUNCTION {bbl.nr}     %   { "\bblno{}" }
 FUNCTION {bbl.nnr}     %   { "\bblno{}" }
 {  curlanguage "english" =
     {"No."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{№}"}
            {"language is not defined: " language  "No." * * warning$ "No."}
       if$}
@@ -453,7 +432,7 @@ FUNCTION {bbl.nnr}     %   { "\bblno{}" }
 FUNCTION {bbl.in}    %    { "\bblin{}" }
 {  curlanguage "english" =
     {"in"}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{в}"}
            {"language is not defined: " language  "in" * * warning$ "in"}
       if$}
@@ -463,7 +442,7 @@ FUNCTION {bbl.in}    %    { "\bblin{}" }
 FUNCTION {bbl.iin}  %     { "\bblIn{}" }
 {  curlanguage "english" =
     {"In"}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"В"}
            {"language is not defined: " language  "In" * * warning$ "In"}
       if$}
@@ -473,7 +452,7 @@ FUNCTION {bbl.iin}  %     { "\bblIn{}" }
 FUNCTION {bbl.pages}    % { "\bblpp." }
 {  curlanguage "english" =
     {"pp."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{с.}"}
            {"language is not defined: " language  "pp." * * warning$ "pp."}
       if$}
@@ -483,7 +462,7 @@ FUNCTION {bbl.pages}    % { "\bblpp." }
 FUNCTION {bbl.page}   %   { "\bblp."
 {  curlanguage "english" =
     {"p."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{с.}"}
            {"language is not defined: " language  "p." * * warning$ "p."}
       if$}
@@ -493,7 +472,7 @@ FUNCTION {bbl.page}   %   { "\bblp."
 FUNCTION {bbl.ppages}%    { "\bblPp." }
 {  curlanguage "english" =
     {"Pp."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{c.}"}
            {"language is not defined: " language  "Pp." * * warning$ "Pp."}
       if$}
@@ -503,7 +482,7 @@ FUNCTION {bbl.ppages}%    { "\bblPp." }
 FUNCTION {bbl.ppage}  %   { "\bblP." }
 {  curlanguage "english" =
     {"P."}
-    { curlanguage "ukrainian" = curlanguage "russian" = or
+    { curlanguage "russian" =
            {"{с.}"}
            {"language is not defined: " language  "P." * * warning$ "P."}
       if$}
@@ -1213,11 +1192,11 @@ FUNCTION {misc}
   howpublished new.block.checka
   howpublished output
   new.block
-  format.date output
+  format.url output
   new.block
   note output
   new.sentence
-  format.url output
+  format.date output
   format.annote output
   fin.entry
 }
@@ -1402,7 +1381,7 @@ EXECUTE {initialize.longest.label}
 ITERATE {longest.label.pass}
 
 FUNCTION {begin.bib}
-{ "\begin{thebibliography}{"  longest.label  * "}" * write$ newline$
+{ "\begin{thebibliography}{9}" write$ newline$
   "\def\selectlanguageifdefined#1{"                  write$ newline$
   "\expandafter\ifx\csname date#1\endcsname\relax"   write$ newline$
   "\else\language\csname l@#1\endcsname\fi}"                  write$ newline$
